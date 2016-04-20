@@ -1,0 +1,12 @@
+{
+  "apiSignupPostTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "path": "$context.resourcePath"
+      },
+      "username": "$input.json('$.username')",
+      "password": "$input.json('$.password')"
+    }
+  }
+}

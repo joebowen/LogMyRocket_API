@@ -1,0 +1,35 @@
+{
+  "apiFlightGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "flight_id": "$input.params('flight_id')"
+    }
+  },
+  "apiFlightDeleteTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "flight_id": "$input.params('flight_id')"
+    }
+  },
+  "apiFlightPutTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "flight_id": "$input.params('flight_id')",
+      "model_id": "$input.json('$.model_id')",
+      "motor_data": "$input.json('$.motor_data')",
+      "flight_data": "$input.json('$.flight_data')"
+    }
+  }
+}

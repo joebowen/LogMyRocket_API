@@ -1,0 +1,22 @@
+{
+  "apiMRocketsGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      }
+    }
+  },
+  "apiRocketsPostTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "rocket_id": "$input.json('$.rocket_id')",
+      "rocket_data": "$input.json('$.rocket_data')"
+    }
+  }
+}

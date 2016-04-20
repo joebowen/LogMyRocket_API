@@ -1,0 +1,12 @@
+{
+  "apiMyMotorGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "motor_id": "$input.params('motor_id')"
+    }
+  }
+}

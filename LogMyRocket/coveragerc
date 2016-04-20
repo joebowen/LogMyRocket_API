@@ -1,0 +1,7 @@
+[report]
+precision = 1
+omit =
+    LogMyRocket/libraries/user_libs/database.py
+    LogMyRocket/tests/*
+    *__init__.py
+    *_serverless_handler.py

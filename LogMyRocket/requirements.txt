@@ -1,0 +1,6 @@
+pytest==2.9.1
+pytest_cov==2.2.1
+PyJWT==1.4.0
+boto3==1.3.0
+botocore==1.4.7
+bcrypt==2.0.0

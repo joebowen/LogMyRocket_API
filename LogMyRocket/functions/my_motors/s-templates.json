@@ -1,0 +1,21 @@
+{
+  "apiMyMotorsGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      }
+    }
+  },
+  "apiMyMotorsPutTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "model_id": "$input.json('$.model_id')"
+    }
+  }
+}

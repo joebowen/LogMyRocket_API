@@ -1,0 +1,33 @@
+{
+  "apiRocketGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "rocket_id": "$input.params('rocket_id')"
+    }
+  },
+  "apiRocketDeleteTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "rocket_id": "$input.params('rocket_id')"
+    }
+  },
+  "apiRocketPutTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "rocket_id": "$input.params('rocket_id')",
+      "rocket_data": "$input.json('$.rocket_data')"
+    }
+  }
+}
