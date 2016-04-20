@@ -1,4 +1,6 @@
-import sys, os
+import sys
+import os
+
 here = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(here, "../sys_packages"))
 

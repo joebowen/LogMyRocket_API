@@ -1,5 +1,5 @@
 {
-  "apiMRocketsGetTemplate": {
+  "apiRocketsGetTemplate": {
     "application/json": {
       "request": {
         "http_method": "$context.httpMethod",

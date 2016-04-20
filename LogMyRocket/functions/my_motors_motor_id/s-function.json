@@ -1,5 +1,5 @@
 {
-  "name": "motors_motor_id",
+  "name": "my_motors_motor_id",
   "runtime": "python2.7",
   "description": "Serverless Lambda function for project: LogMyRocket",
   "customName": false,
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "motors/{motor_id}",
+      "path": "my_motors/{motor_id}",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",

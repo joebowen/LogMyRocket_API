@@ -1,5 +1,5 @@
 # LogMyRocket_cloud
-Cloud server for Log My Rocket - Model rocket flight record tracking SaaS.
+Cloud API for Log My Rocket - Model rocket flight record tracking SaaS.
 
 To install new dependencies:
 

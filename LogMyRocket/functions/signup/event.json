@@ -1,1 +1,8 @@
-{}
+{
+    "request": {
+      "http_method": "POST",
+      "path": "/signup"
+    },
+    "username": "test_user",
+    "password": "test_pass"
+}

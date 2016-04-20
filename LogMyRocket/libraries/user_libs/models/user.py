@@ -149,12 +149,12 @@ def create(user, users_table):
 
     user['user_id'] = str(uuid.uuid4())
 
-    user = format_user(user)
-
     user['password'] = bcrypt.hashpw(user['password'].encode('utf-8'), bcrypt.gensalt())
 
     user['settings'] = {}
     user['my_motors'] = {}
+
+    user.pop('request', None)
 
     users_table.put_item(Item=user)
 
