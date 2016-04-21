@@ -4,9 +4,9 @@
   "description": "Serverless Lambda function for project: LogMyRocket",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "functions/flights/handler.handler",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 512,
   "authorizer": {},
   "custom": {
     "excludePatterns": []

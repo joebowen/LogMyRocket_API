@@ -4,9 +4,9 @@
   "description": "Serverless Lambda function for project: LogMyRocket",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "functions/settings/handler.handler",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 512,
   "authorizer": {},
   "custom": {
     "excludePatterns": []
@@ -20,9 +20,32 @@
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
-      "requestTemplates": {
-        "application/json": ""
-      },
+      "requestTemplates": "$${apiSettingsGetTemplate}",
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {
+            "application/json;charset=UTF-8": "Empty"
+          },
+          "responseTemplates": {
+            "application/json;charset=UTF-8": ""
+          }
+        }
+      }
+    },
+    {
+      "path": "settings",
+      "method": "PUT",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${apiSettingsPutTemplate}",
       "responses": {
         "400": {
           "statusCode": "400"

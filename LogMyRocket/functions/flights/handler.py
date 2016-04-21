@@ -44,11 +44,14 @@ def handler(event, context):
 
         Parameters are given in the JSON object of the http POST call.
 
-        :param event['name']: Name of the flight to create.
-
+        :param event['model_id']: ID of rocket model to attach to flight.
+        :param event['motor_data']: Motor data about flight.
+        :param event['flight_data']: Flight data about flight.
         :param event['request']['token']: Requesting client's JWT token.
-        :type event['name']: string
-
+        :type event['flight_id']: string
+        :type event['model_id']: string, optional
+        :type event['motor_data']: dict, optional
+        :type event['flight_data']: dict, optional
         :type event['request']['token']: string
 
         :Example:

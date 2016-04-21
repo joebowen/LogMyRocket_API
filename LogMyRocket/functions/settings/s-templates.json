@@ -1,0 +1,21 @@
+{
+  "apiSettingsGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      }
+    }
+  },
+  "apiSettingsPutTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "settings": "$input.json('$.settings')"
+    }
+  }
+}

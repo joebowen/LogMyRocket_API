@@ -1,5 +1,5 @@
 {
-  "apiMyMotorGetTemplate": {
+  "apiMyMotorDeleteTemplate": {
     "application/json": {
       "request": {
         "http_method": "$context.httpMethod",

@@ -1,4 +1,8 @@
-import sys, os
+from __future__ import print_function
+
+import sys
+import os
+
 here = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(here, "../../sys_packages"))
 sys.path.append(os.path.join(here, "../"))
@@ -9,36 +13,6 @@ from boto3.dynamodb.conditions import Key, Attr
 
 from error_handler import UserAlreadyExistsError, UserDoesNotExistError, UsersDoNotExistError, MissingUserIdError, \
     MissingUsernameError, MalformedUserObjectError, MissingUserIdsError, MissingPasswordError
-
-
-def format_user(user):
-    """Format a user JSON object and convert it to a printable format.
-
-        :param user: User object.
-        :type user: JSON
-        :returns: user
-        :rtype: Printable User object
-
-        :raises MissingUserIdError: If 'user_id' is not a key in the user object.
-        :raises MissingUsernameError: If 'username' is not a key in the user object.
-        :raises MalformedUserObject: If user object is not a dictionary.
-
-    """
-    if type(user) is not dict:
-        raise MalformedUserObjectError
-
-    if 'user_id' not in user or not user['user_id']:
-        raise MissingUserIdError
-
-    if 'username' not in user or not user['username']:
-        raise MissingUsernameError
-
-    user = {
-        "user_id": user['user_id'],
-        "username": user['username']
-    }
-
-    return user
 
 
 def get_one(user_id, users_table):
@@ -63,7 +37,7 @@ def get_one(user_id, users_table):
     if not result['Count']:
         raise UserDoesNotExistError
 
-    return format_user(result['Items'][0])
+    return result['Items'][0]
 
 
 def get_many(user_ids, users_table):
@@ -98,7 +72,7 @@ def get_many(user_ids, users_table):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_user(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -117,7 +91,7 @@ def get_all(users_table):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_user(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -284,3 +258,83 @@ def add_motor_to_user_collection(motor_id, users_table, payload):
     )
 
     return None
+
+
+def del_motor_from_user_collection(motor_id, users_table, payload):
+    """Add a motor to a user's collection.
+
+        :param motor_id: Global id of motor to add to the user's collection
+        :param users_table: The Users DB table.
+        :param payload: Payload from JWT containing authenticated user information.
+        :type motor_id: string
+        :type users_table: object
+        :type payload: json
+
+        :raises UserDoesNotExistError: If the user does not exist.
+
+    """
+    check = users_table.query(KeyConditionExpression=Key('user_id').eq(payload['sub']))
+
+    if not check['Count']:
+        raise UserDoesNotExistError
+
+    motor_list = check['Items'][0]['my_motors']
+
+    if motor_list[motor_id] > 1:
+        motor_list[motor_id] -= 1
+    else:
+        motor_list.pop(motor_id, None)
+
+    users_table.update_item(
+        Key={'user_id': payload['sub']},
+        UpdateExpression='SET my_motors=:my_motors',
+        ExpressionAttributeValues={
+            ':my_motors': motor_list
+        }
+    )
+
+    return None
+
+
+def get_user_settings(users_table, payload):
+    """Get the current user's settings.
+
+        :param users_table: The Users DB table.
+        :param payload: Payload from JWT containing authenticated user information.
+        :type users_table: object
+        :type payload: json
+        :returns settings: The current user's settings.
+        :rtype settings: json
+
+    """
+    check = users_table.query(KeyConditionExpression=Key('user_id').eq(payload['sub']))
+
+    settings = check['Items'][0]['settings']
+
+    return settings
+
+
+def set_user_settings(settings, users_table, payload):
+    """Get the current user's settings.
+
+        :param settings: New settings.
+        :param users_table: The Users DB table.
+        :param payload: Payload from JWT containing authenticated user information.
+        :type settings: json
+        :type users_table: object
+        :type payload: json
+        :returns settings: The current user's settings.
+        :rtype settings: json
+
+    """
+    users_table.update_item(
+        Key={'user_id': payload['sub']},
+        UpdateExpression='SET settings=:settings',
+        ExpressionAttributeValues={
+            ':settings': settings,
+        }
+    )
+
+    return None
+
+

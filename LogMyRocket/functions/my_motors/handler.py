@@ -62,7 +62,7 @@ def handler(event, context):
     http_method = event['request']['http_method']
 
     if http_method == 'GET':
-        user = user_model.get_one(payload['sub'], users_table, payload)
+        user = user_model.get_one(payload['sub'], users_table)
 
         return user['my_motors']
 

@@ -1,4 +1,8 @@
-import sys, os
+from __future__ import print_function
+
+import sys
+import os
+
 here = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(here, "../../sys_packages"))
 sys.path.append(os.path.join(here, "../"))
@@ -8,27 +12,6 @@ from boto3.dynamodb.conditions import Key, Attr
 
 from error_handler import FlightAlreadyExistsError, FlightDoesNotExistError, FlightsDoNotExistError, \
     MissingUserIdError, MissingFlightIdError, MissingFlightIdsError, MalformedFlightObjectError, MissingRocketIdError
-
-
-def format_flight(flight):
-    """Format a flight JSON object and convert it to a printable format.
-
-        :param flight: Flight object.
-        :type flight: JSON
-        :returns: flight
-        :rtype: Printable Flight object
-
-        :raises MissingFlightIdError: If 'flight_id' is not a key in the flight object.
-        :raises MalformedFlightObject: If flight object is not a dictionary.
-
-    """
-    if type(flight) is not dict:
-        raise MalformedFlightObjectError
-
-    if 'flight_id' not in flight or not flight['flight_id']:
-        raise MissingFlightIdError
-
-    return flight
 
 
 def get_one(flight_id, flights_table, payload):
@@ -56,7 +39,7 @@ def get_one(flight_id, flights_table, payload):
     if not result['Count']:
         raise FlightDoesNotExistError
 
-    return format_flight(result['Items'][0])
+    return result['Items'][0]
 
 
 def get_many(flight_ids, flights_table, payload):
@@ -94,7 +77,7 @@ def get_many(flight_ids, flights_table, payload):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_flight(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -115,7 +98,7 @@ def get_all(flights_table, payload):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_flight(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -143,8 +126,6 @@ def create(flight, flights_table, payload):
     flight['owner'] = payload['sub']
 
     flight['flight_id'] = str(uuid.uuid4())
-
-    flight = format_flight(flight)
 
     flights_table.put_item(Item=flight)
 

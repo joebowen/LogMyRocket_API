@@ -8,6 +8,9 @@ here = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(here, "../../libraries/sys_packages"))
 sys.path.append(os.path.join(here, "../../libraries/user_libs"))
 
+sys.path.append(os.path.join(here, "libraries/sys_packages"))
+sys.path.append(os.path.join(here, "libraries/user_libs"))
+
 from database import users_table
 from models import user as user_model
 
@@ -53,6 +56,6 @@ def handler(event, context):
     if http_method == 'POST':
         user_id = user_model.create(event, users_table)
 
-        return {user_id}
+        return {"user_id": user_id}
 
     raise UnableToPerformOperationError

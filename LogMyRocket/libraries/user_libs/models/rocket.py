@@ -1,4 +1,8 @@
-import sys, os
+from __future__ import print_function
+
+import sys
+import os
+
 here = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(here, "../../sys_packages"))
 sys.path.append(os.path.join(here, "../"))
@@ -8,26 +12,6 @@ from boto3.dynamodb.conditions import Key, Attr
 
 from error_handler import MalformedRocketObjectError, MissingRocketIdError, RocketDoesNotExistError, \
     MissingRocketIdsError, RocketsDoNotExistError, MissingUserIdError
-
-def format_rocket(rocket):
-    """Format a rocket model JSON object and convert it to a printable format.
-
-        :param rocket: Rocket model object.
-        :type rocket: JSON
-        :returns: rocket
-        :rtype: Printable Rocket object
-
-        :raises MissingRocketIdError: If 'rocket_id' is not a key in the rocket object.
-        :raises MalformedRocketObject: If rocket object is not a dictionary.
-
-    """
-    if type(rocket) is not dict:
-        raise MalformedRocketObjectError
-
-    if 'rocket_id' not in rocket or not rocket['rocket_id']:
-        raise MissingRocketIdError
-
-    return rocket
 
 
 def get_one(rocket_id, rockets_table, payload):
@@ -55,7 +39,7 @@ def get_one(rocket_id, rockets_table, payload):
     if not result['Count']:
         raise RocketDoesNotExistError
 
-    return format_rocket(result['Items'][0])
+    return result['Items'][0]
 
 
 def get_many(rocket_ids, rockets_table, payload):
@@ -93,7 +77,7 @@ def get_many(rocket_ids, rockets_table, payload):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_rocket(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -114,7 +98,7 @@ def get_all(rockets_table, payload):
     result_dict = []
 
     for result in results['Items']:
-        result_dict.append(format_rocket(result))
+        result_dict.append(result)
 
     return result_dict
 
@@ -139,8 +123,6 @@ def create(rocket, rockets_table, payload):
     rocket['owner'] = payload['sub']
 
     rocket['rocket_id'] = str(uuid.uuid4())
-
-    rocket = format_rocket(rocket)
 
     rockets_table.put_item(Item=rocket)
 

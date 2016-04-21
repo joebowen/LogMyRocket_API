@@ -1,4 +1,4 @@
-# LogMyRocket_cloud
+# LogMyRocket_API
 Cloud API for Log My Rocket - Model rocket flight record tracking SaaS.
 
 To install new dependencies:

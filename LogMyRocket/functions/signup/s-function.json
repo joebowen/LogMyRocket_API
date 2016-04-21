@@ -4,9 +4,9 @@
   "description": "Serverless Lambda function for project: LogMyRocket",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "functions/signup/handler.handler",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 512,
   "authorizer": {},
   "custom": {
     "excludePatterns": []
@@ -28,11 +28,9 @@
         "default": {
           "statusCode": "200",
           "responseParameters": {},
-          "responseModels": {
-            "application/json;charset=UTF-8": "Empty"
-          },
+          "responseModels": {},
           "responseTemplates": {
-            "application/json;charset=UTF-8": ""
+            "application/json": ""
           }
         }
       }

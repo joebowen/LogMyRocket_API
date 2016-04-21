@@ -20,11 +20,11 @@ log.setLevel(logging.DEBUG)
 def handler(event, context):
     """Handler for the /motors/{motor_id} endpoint.
 
-        ===
-        GET
-        ===
+        ======
+        DELETE
+        ======
 
-        Get a JSON object of a motor given a motor id.
+        Remove a motor from the user's motor collection.
 
         :param event['motor_id']: Motor id.
         :param event['request']['token']: Requesting client's JWT token.
@@ -35,7 +35,7 @@ def handler(event, context):
 
         :Example:
 
-        curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <JWT_TOKEN>' 'http://<server_addr>/my_motors/<motor_id>'
+        curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <JWT_TOKEN>' 'http://<server_addr>/my_motors/<motor_id>'
 
         :raises UnableToPerformOperationError: If an invalid http_method is used to call the endpoint handler.
 
@@ -47,9 +47,9 @@ def handler(event, context):
 
     http_method = event['request']['http_method']
 
-    if http_method == 'GET':
-        motor = motor_model.get_one(event['motor_id'])
+    if http_method == 'DELETE':
+        user_model.del_motor_from_user_collection(event['motor_id'], users_table, payload)
 
-        return motor
+        return None
 
     raise UnableToPerformOperationError
