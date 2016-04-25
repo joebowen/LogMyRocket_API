@@ -60,9 +60,7 @@
           "responseParameters": {
             "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'"
           },
-          "responseModels": {
-            "application/json;charset=UTF-8": "Empty"
-          },
+          "responseModels": {},
           "responseTemplates": {
             "application/json;charset=UTF-8": ""
           }

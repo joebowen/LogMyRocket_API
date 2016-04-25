@@ -79,6 +79,7 @@ def handler(event, context):
         return flights
 
     elif http_method == 'POST':
+        event.pop("request", None)
         flight_id = flight_model.create(event, flights_table, payload)
 
         return {'flight_id': flight_id}

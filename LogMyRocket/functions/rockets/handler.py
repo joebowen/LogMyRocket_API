@@ -74,6 +74,7 @@ def handler(event, context):
         return rockets
 
     elif http_method == 'POST':
+        event.pop("request", None)
         rocket_id = rocket_model.create(event, rockets_table, payload)
 
         return {'rocket_id': rocket_id}

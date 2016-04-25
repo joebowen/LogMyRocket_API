@@ -54,6 +54,7 @@ def handler(event, context):
     http_method = event['request']['http_method']
 
     if http_method == 'POST':
+        event.pop("request", None)
         user_id = user_model.create(event, users_table)
 
         return {"user_id": user_id}

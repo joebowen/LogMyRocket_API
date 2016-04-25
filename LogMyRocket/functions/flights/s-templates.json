@@ -20,7 +20,7 @@
       "flight_data": "$input.json('$.flight_data')"
     }
   },
-    "apiCorsOptionsResponse": {
+  "apiCorsOptionsResponse": {
     "default": {
       "statusCode": "200",
       "responseParameters": {

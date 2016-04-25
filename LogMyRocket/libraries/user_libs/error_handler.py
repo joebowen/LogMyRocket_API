@@ -86,3 +86,30 @@ class MissingRocketIdsError(Exception):
 class RocketsDoNotExistError(Exception):
     def __init__(self, rocket_ids):
         Exception.__init__(self, "The following rocket ids do not exist: %s" % rocket_ids)
+
+
+class FlightAlreadyExistsError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "The flight already exists.")
+
+class FlightDoesNotExistError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "The flight does not exists.")
+
+class FlightsDoNotExistError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "The flights do not exist.")
+
+class MissingFlightIdError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Missing flight ID in request.")
+
+
+class MissingFlightIdsError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Missing flight IDs in request.")
+
+
+class MalformedFlightObjectError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Malformed flight object error.")

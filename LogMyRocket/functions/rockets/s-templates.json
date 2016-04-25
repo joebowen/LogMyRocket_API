@@ -19,7 +19,7 @@
       "rocket_data": "$input.json('$.rocket_data')"
     }
   },
-    "apiCorsOptionsResponse": {
+  "apiCorsOptionsResponse": {
     "default": {
       "statusCode": "200",
       "responseParameters": {
