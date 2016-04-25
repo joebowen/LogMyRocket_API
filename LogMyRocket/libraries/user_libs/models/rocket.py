@@ -10,8 +10,8 @@ sys.path.append(os.path.join(here, "../"))
 import uuid
 from boto3.dynamodb.conditions import Key, Attr
 
-from error_handler import MalformedRocketObjectError, MissingRocketIdError, RocketDoesNotExistError, \
-    MissingRocketIdsError, RocketsDoNotExistError, MissingUserIdError
+from error_handler import MissingRocketIdError, RocketDoesNotExistError, MissingRocketIdsError, \
+    RocketsDoNotExistError, MissingUserIdError
 
 
 def get_one(rocket_id, rockets_table, payload):

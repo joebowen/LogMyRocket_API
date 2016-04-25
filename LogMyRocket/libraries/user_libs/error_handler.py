@@ -66,3 +66,23 @@ class MissingUsernameError(Exception):
 class MalformedUserObjectError(Exception):
     def __init__(self):
         Exception.__init__(self, "Malformed user object in request.")
+
+
+class MissingRocketIdError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Missing rocket ID in request.")
+
+
+class RocketDoesNotExistError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Rocket model does not exist.")
+
+
+class MissingRocketIdsError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Missing rocket IDs in request.")
+
+
+class RocketsDoNotExistError(Exception):
+    def __init__(self, rocket_ids):
+        Exception.__init__(self, "The following rocket ids do not exist: %s" % rocket_ids)

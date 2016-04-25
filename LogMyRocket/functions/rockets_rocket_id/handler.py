@@ -44,9 +44,9 @@ def handler(event, context):
         Update a rocket given its rocket id.
 
         :param event['rocket_id']: Rocket id.
-        :param event['motor_data']: Rocket model data about flight.
+        :param event['rocket_data']: Rocket model data about flight.
         :param event['request']['token']: Requesting client's JWT token.
-        :type event['frocket_id']: string
+        :type event['rocket_id']: string
         :type event['rocket_data']: dict, optional
         :type event['request']['token']: string
 

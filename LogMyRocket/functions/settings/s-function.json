@@ -9,7 +9,12 @@
   "memorySize": 512,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [],
+    "cors": {
+      "allowOrigin": "https://www.logmyrocket.info",
+      "allowHeaders": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key"],
+      "allowCredentials": true
+    }
   },
   "endpoints": [
     {
@@ -27,7 +32,9 @@
         },
         "default": {
           "statusCode": "200",
-          "responseParameters": {},
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'"
+          },
           "responseModels": {
             "application/json;charset=UTF-8": "Empty"
           },
@@ -52,7 +59,9 @@
         },
         "default": {
           "statusCode": "200",
-          "responseParameters": {},
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'"
+          },
           "responseModels": {
             "application/json;charset=UTF-8": "Empty"
           },
@@ -61,6 +70,13 @@
           }
         }
       }
+    },
+    {
+      "path": "settings",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
     }
   ],
   "events": [],

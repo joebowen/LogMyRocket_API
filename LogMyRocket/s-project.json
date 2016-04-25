@@ -1,5 +1,7 @@
 {
   "name": "LogMyRocket",
   "custom": {},
-  "plugins": []
+  "plugins": [
+    "serverless-cors-plugin"
+  ]
 }
