@@ -68,9 +68,9 @@ class MalformedUserObjectError(Exception):
         Exception.__init__(self, "Malformed user object in request.")
 
 
-class MissingRocketIdError(Exception):
+class MissingRocketDataError(Exception):
     def __init__(self):
-        Exception.__init__(self, "Missing rocket ID in request.")
+        Exception.__init__(self, "Missing rocket data in request.")
 
 
 class RocketDoesNotExistError(Exception):

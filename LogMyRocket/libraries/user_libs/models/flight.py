@@ -11,7 +11,7 @@ import uuid
 from boto3.dynamodb.conditions import Key, Attr
 
 from error_handler import FlightAlreadyExistsError, FlightDoesNotExistError, FlightsDoNotExistError, \
-    MissingUserIdError, MissingFlightIdError, MissingFlightIdsError, MalformedFlightObjectError, MissingRocketIdError
+    MissingUserIdError, MissingFlightIdError, MissingFlightIdsError, MalformedFlightObjectError, MissingRocketDataError
 
 
 def get_one(flight_id, flights_table, payload):
@@ -114,14 +114,14 @@ def create(flight, flights_table, payload):
         :type payload: dict
 
         :raises MissingUserIdError: If 'sub' is not a key in the payload object.
-        :raises MissingRocketIdError: If 'rocket_id' is not a key in the flight object.
+        :raises MissingRocketDataError: If 'rocket_data' is not a key in the flight object.
 
     """
     if 'sub' not in payload or not payload['sub']:
         raise MissingUserIdError
 
-    if 'rocket_id' not in flight or not flight['rocket_id']:
-        raise MissingRocketIdError
+    if 'rocket_data' not in flight or not flight['rocket_data']:
+        raise MissingRocketDataError
 
     flight['owner'] = payload['sub']
 

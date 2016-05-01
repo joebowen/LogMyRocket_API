@@ -58,7 +58,8 @@
         "default": {
           "statusCode": "200",
           "responseParameters": {
-            "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'"
+            "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'",
+            "method.response.header.Access-Control-Allow-Credentials": "'true'"
           },
           "responseModels": {},
           "responseTemplates": {

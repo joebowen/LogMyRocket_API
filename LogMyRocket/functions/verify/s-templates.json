@@ -1,23 +1,11 @@
 {
-  "apiFlightsGetTemplate": {
+  "apiVerifyGetTemplate": {
     "application/json": {
       "request": {
         "http_method": "$context.httpMethod",
         "token": "$input.params().header.get('Authorization')",
         "path": "$context.resourcePath"
       }
-    }
-  },
-  "apiFlightsPostTemplate": {
-    "application/json": {
-      "request": {
-        "http_method": "$context.httpMethod",
-        "token": "$input.params().header.get('Authorization')",
-        "path": "$context.resourcePath"
-      },
-      "rocket_data": "$input.json('$.rocket_data')",
-      "motor_data": "$input.json('$.motor_data')",
-      "flight_data": "$input.json('$.flight_data')"
     }
   },
   "apiCorsOptionsResponse": {
