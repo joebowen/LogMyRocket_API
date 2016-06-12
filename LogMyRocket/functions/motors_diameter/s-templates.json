@@ -1,0 +1,33 @@
+{
+  "apiMotorDiaGetTemplate": {
+    "application/json": {
+      "request": {
+        "http_method": "$context.httpMethod",
+        "token": "$input.params().header.get('Authorization')",
+        "path": "$context.resourcePath"
+      },
+      "diameter": "$input.params('diameter')"
+    }
+  },
+    "apiCorsOptionsResponse": {
+    "default": {
+      "statusCode": "200",
+      "responseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS,HEAD,DELETE,PATCH,POST,PUT'",
+        "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'",
+        "method.response.header.Access-Control-Max-Age": "'3600'",
+        "method.response.header.Access-Control-Allow-Credentials": "'true'"
+      },
+      "responseModels": {},
+      "responseTemplates": {
+        "application/json": ""
+      }
+    }
+  },
+  "apiCorsRequestTemplate": {
+    "application/json": {
+      "statusCode": 200
+    }
+  }
+}

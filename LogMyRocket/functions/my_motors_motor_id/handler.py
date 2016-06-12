@@ -18,7 +18,7 @@ log.setLevel(logging.DEBUG)
 
 
 def handler(event, context):
-    """Handler for the /motors/{motor_id} endpoint.
+    """Handler for the /my_motors/{motor_id} endpoint.
 
         ======
         DELETE
@@ -30,8 +30,6 @@ def handler(event, context):
         :param event['request']['token']: Requesting client's JWT token.
         :type event['motor_id']: string
         :type event['request']['token']: string
-        :returns flight: Motor object.
-        :rtype: JSON
 
         :Example:
 

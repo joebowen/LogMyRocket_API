@@ -17,7 +17,7 @@ PyJWT-1.4.0.dist-info/metadata.json,sha256=xPoYIBzJdD7X2Xw7tnLhcriJz8j9ZGhtQCCPw
 PyJWT-1.4.0.dist-info/RECORD,,
 PyJWT-1.4.0.dist-info/top_level.txt,sha256=RP5DHNyJbMq2ka0FmfTgoSaQzh7e3r5XuCWCO8a00k8,4
 PyJWT-1.4.0.dist-info/WHEEL,sha256=AvR0WeTpDaxT645bl5FQxUK6NPsTls2ttpcGJg3j1Xg,110
-/tmp/tmpqkX0BO/bin/jwt,sha256=4ZzLyESHAmPFwx_1Dqyyj26kyTXezUyTGHgf8KKU1YQ,213
+/tmp/tmpkT4LwG/bin/jwt,sha256=4ZzLyESHAmPFwx_1Dqyyj26kyTXezUyTGHgf8KKU1YQ,213
 jwt/algorithms.pyc,,
 jwt/api_jws.pyc,,
 jwt/utils.pyc,,

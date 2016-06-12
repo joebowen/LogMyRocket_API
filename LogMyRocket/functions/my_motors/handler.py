@@ -49,7 +49,7 @@ def handler(event, context):
 
         curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <JWT_TOKEN>' -d '{
           "motor_id": "<string>"
-        }' 'http://<server_addr>/flights/<flight_id>'
+        }' 'http://<server_addr>/my_motors'
 
         :raises UnableToPerformOperationError: If an invalid http_method is used to call the endpoint handler.
 

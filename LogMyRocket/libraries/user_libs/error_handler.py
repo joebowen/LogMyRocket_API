@@ -78,6 +78,11 @@ class RocketDoesNotExistError(Exception):
         Exception.__init__(self, "Rocket model does not exist.")
 
 
+class MissingRocketIdError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Missing rocket ID in request.")
+
+
 class MissingRocketIdsError(Exception):
     def __init__(self):
         Exception.__init__(self, "Missing rocket IDs in request.")

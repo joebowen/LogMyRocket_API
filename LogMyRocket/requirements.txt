@@ -4,3 +4,5 @@ PyJWT==1.4.0
 boto3==1.3.0
 botocore==1.4.7
 bcrypt==2.0.0
+xmltodict==0.10.1
+requests==2.2.1

@@ -1,0 +1,7 @@
+{
+  "request": {
+    "http_method": "GET",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ3d3cubG9nbXlyb2NrZXQuaW5mbyIsImlhdCI6MTQ2MzI2NDQ5NywibmJmIjoxNDYzMjY0NDk3LCJleHAiOjE0NjMyNjYyOTcsInN1YiI6IjQyNWE3ZWQyLTVjOWQtNDM1MS1hMjRjLTZkN2NlMjFmOGI0OCJ9.mqDnCwspGZZr0NUvRY2067Qtrr2v0eSXHwx4CGLTrYo",
+    "path": "motors"
+  }
+}

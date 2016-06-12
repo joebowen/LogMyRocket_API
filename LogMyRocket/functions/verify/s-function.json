@@ -40,7 +40,7 @@
       }
     },
     {
-      "path": "rockets",
+      "path": "verify",
       "method": "OPTIONS",
       "type": "MOCK",
       "requestTemplates": "$${apiCorsRequestTemplate}",

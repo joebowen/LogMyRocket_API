@@ -85,6 +85,13 @@
           }
         }
       }
+    },
+    {
+      "path": "rockets/{rocket_id}",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
     }
   ],
   "events": [],

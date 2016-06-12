@@ -1,0 +1,63 @@
+{
+  "name": "motors_motor_id",
+  "runtime": "python2.7",
+  "description": "Serverless Lambda function for project: LogMyRocket",
+  "customName": false,
+  "customRole": false,
+  "handler": "functions/motors_motor_id/handler.handler",
+  "timeout": 6,
+  "memorySize": 512,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [],
+    "cors": {
+      "allowOrigin": "https://www.logmyrocket.info",
+      "allowHeaders": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key"],
+      "allowCredentials": true
+    }
+  },
+  "endpoints": [
+    {
+      "path": "motors/{motor_id}",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${apiMotorGetTemplate}",
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'https://www.logmyrocket.info'"
+          },
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json;charset=UTF-8": ""
+          }
+        }
+      }
+    },
+    {
+      "path": "motors/{motor_id}",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}
