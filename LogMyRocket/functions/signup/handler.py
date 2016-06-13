@@ -33,8 +33,10 @@ def handler(event, context):
 
         :param event['username']: User name of the user to create.
         :param event['password']: Password of the user to create.
+        :param event['settings']: List of settings to add to the user being created.
         :type event['username']: string
         :type event['password']: string
+        :type event['settings']: list of dicts
 
         :Example:
 
@@ -42,7 +44,10 @@ def handler(event, context):
             -H 'Accept: application/json'
             -d '{
               "username": "string",
-              "password": "string"
+              "password": "string",
+              "settings": [
+                {"key", "value"}
+              ],
             }' 'http://<server_addr>/signup'
 
         :raises UnableToPerformOperationError: If an invalid http_method is used to call the endpoint handler.

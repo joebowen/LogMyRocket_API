@@ -11,7 +11,7 @@
   "custom": {
     "excludePatterns": [],
     "cors": {
-      "allowOrigin": "*",
+      "allowOrigin": "https://www.logmyrocket.info",
       "allowHeaders": ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key"],
       "allowCredentials": true
     }
@@ -39,6 +39,13 @@
           }
         }
       }
+    },
+    {
+      "path": "signup",
+      "method": "OPTIONS",
+      "type": "MOCK",
+      "requestTemplates": "$${apiCorsRequestTemplate}",
+      "responses": "$${apiCorsOptionsResponse}"
     }
   ],
   "events": [],
