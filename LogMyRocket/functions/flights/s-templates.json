@@ -16,7 +16,6 @@
         "path": "$context.resourcePath"
       },
       "rocket_data": "$input.json('$.rocket_data')",
-      "motor_data": "$input.json('$.motor_data')",
       "flight_data": "$input.json('$.flight_data')"
     }
   },

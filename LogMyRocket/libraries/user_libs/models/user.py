@@ -125,8 +125,11 @@ def create(user, users_table):
 
     user['password'] = bcrypt.hashpw(user['password'].encode('utf-8'), bcrypt.gensalt())
 
-    user['settings'] = {}
-    user['my_motors'] = {}
+    if 'settings' not in user or not user['settings']:
+        user['settings'] = {}
+
+    if 'my_motors' not in user or not user['my_motors']:
+        user['my_motors'] = {}
 
     user.pop('request', None)
 
