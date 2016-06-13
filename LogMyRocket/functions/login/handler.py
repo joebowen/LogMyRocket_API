@@ -75,7 +75,8 @@ def handler(event, context):
                     'nbf': datetime.utcnow(),
                     'iat': datetime.utcnow(),
                     'sub': user['user_id'],
-                    'iss': 'www.logmyrocket.info'
+                    'iss': 'www.logmyrocket.info',
+                    'settings': user['settings']
                 }
 
                 token = jwt.encode(payload, jwt_secret)
