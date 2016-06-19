@@ -154,13 +154,18 @@ def update(flight_id, data, flights_table):
     if not check['Count']:
         raise FlightDoesNotExistError
 
+    if 'rocket_data' in data:
+        check['Items'][0]['rocket_data'].update(data['rocket_data'])
+
+    if 'flight_data' in data:
+        check['Items'][0]['flight_data'].update(data['flight_data'])
+
     flights_table.update_item(
         Key={'flight_id': flight_id},
-        UpdateExpression='SET rocket_id=:rocket_id, motor_data=:motor_data, flight_data=:flight_data',
+        UpdateExpression='SET rocket_data=:rocket_data, flight_data=:flight_data',
         ExpressionAttributeValues={
-            ':rocket_id': data['rocket_id'] if 'rocket_id' in data else check['Items'][0]['rocket_id'],
-            ':motor_data': data['motor_data'] if 'motor_data' in data else check['Items'][0]['motor_data'],
-            ':flight_data': data['flight_data'] if 'flight_data' in data else check['Items'][0]['flight_data'],
+            ':rocket_data': check['Items'][0]['rocket_data'],
+            ':flight_data': check['Items'][0]['flight_data']
         }
     )
 
