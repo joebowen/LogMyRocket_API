@@ -13,6 +13,8 @@ sys.path.append(os.path.join(here, "libraries/user_libs"))
 
 from database import users_table
 from models import user as user_model
+from database import rockets_table
+from models import rocket as rocket_model
 
 from error_handler import UnableToPerformOperationError
 
@@ -61,6 +63,36 @@ def handler(event, context):
     if http_method == 'POST':
         event.pop("request", None)
         user_id = user_model.create(event, users_table)
+
+        event = {
+            "rocket_data": {
+                "colors": "Silver, Blue",
+                "mfg": "Estes",
+                "motors": [
+                  [
+                    {
+                      "diameter": "13"
+                    }
+                  ]
+                ],
+                "name": "Gnome",
+                "notes": "Recommended Motors: 1/2A3-2T, 1/2A3-4T, A3-4T, A10-3T",
+                "preflight": [
+                  "Insert wadding",
+                  "Roll up streamer, insert into body tube and insert nose cone",
+                  "Insert motor",
+                  "Insert motor starter and secure with plug"
+                ],
+                "recovery": "Streamer",
+                "rod": "1/8\""
+            }
+        }
+
+        payload = {
+            'sub' : user_id
+        }
+
+        rocket_model.create(event, rockets_table, payload)
 
         return {"user_id": user_id}
 

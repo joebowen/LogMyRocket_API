@@ -87,12 +87,12 @@ def handler(event, context):
         return rocket
 
     elif http_method == 'PUT':
-        rocket_model.update(event['flight_id'], event, rockets_table)
+        rocket_model.update(event['rocket_id'], event, rockets_table)
 
         return None
 
     elif http_method == 'DELETE':
-        rocket_model.delete(event['flight_id'], rockets_table)
+        rocket_model.delete(event['rocket_id'], rockets_table)
 
         return None
 
