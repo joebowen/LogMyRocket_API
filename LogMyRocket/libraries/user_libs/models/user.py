@@ -227,13 +227,13 @@ def get_by_username(username, users_table):
     return user['Items'][0]
 
 
-def add_motor_to_user_collection(motor_id, users_table, payload):
+def add_motor_to_user_collection(motor, users_table, payload):
     """Add a motor to a user's collection.
 
-        :param motor_id: Global id of motor to add to the user's collection
+        :param motor: Motor to add to the user's collection
         :param users_table: The Users DB table.
         :param payload: Payload from JWT containing authenticated user information.
-        :type motor_id: string
+        :type motor: dict
         :type users_table: object
         :type payload: json
 
@@ -247,10 +247,12 @@ def add_motor_to_user_collection(motor_id, users_table, payload):
 
     motor_list = check['Items'][0]['my_motors']
 
-    if motor_id in motor_list:
-        motor_list[motor_id] += 1
+    if motor['motor-id'] in motor_list:
+        motor_list[motor['motor-id']]['count'] += 1
     else:
-        motor_list[motor_id] = 1
+        motor_list[motor['motor-id']] = {}
+        motor_list[motor['motor-id']]['count'] = 1
+        motor_list[motor['motor-id']]['motor'] = motor
 
     users_table.update_item(
         Key={'user_id': payload['sub']},
@@ -283,8 +285,8 @@ def del_motor_from_user_collection(motor_id, users_table, payload):
 
     motor_list = check['Items'][0]['my_motors']
 
-    if motor_list[motor_id] > 1:
-        motor_list[motor_id] -= 1
+    if motor_list[motor_id]['count'] > 1:
+        motor_list[motor_id]['count'] -= 1
     else:
         motor_list.pop(motor_id, None)
 

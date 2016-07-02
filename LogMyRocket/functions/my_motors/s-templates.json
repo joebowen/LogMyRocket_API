@@ -15,7 +15,7 @@
         "token": "$input.params().header.get('Authorization')",
         "path": "$context.resourcePath"
       },
-      "model_id": "$input.json('$.model_id')"
+      "motor": "$input.json('$.motor')"
     }
   },
     "apiCorsOptionsResponse": {

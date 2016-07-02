@@ -40,9 +40,9 @@ def handler(event, context):
 
         Add a motor to the user collection.
 
-        :param event['motor_id']: ID of motor to add to the collection.
+        :param event['motor']: Motor to add to the collection.
         :param event['request']['token']: Requesting client's JWT token.
-        :type event['motor_id']: string
+        :type event['motor']: dict
         :type event['request']['token']: string
 
         :Example:
@@ -67,7 +67,7 @@ def handler(event, context):
         return user['my_motors']
 
     elif http_method == 'PUT':
-        user_model.add_motor_to_user_collection(event['motor_id'], users_table, payload)
+        user_model.add_motor_to_user_collection(event['motor'], users_table, payload)
 
         return None
 
