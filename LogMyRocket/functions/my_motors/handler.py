@@ -67,7 +67,7 @@ def handler(event, context):
         return user['my_motors']
 
     elif http_method == 'PUT':
-        user_model.add_motor_to_user_collection(event['motor'], users_table, payload)
+        user_model.add_motor_to_user_collection(event['motor'], event['delay'], users_table, payload)
 
         return None
 

@@ -15,7 +15,8 @@
         "token": "$input.params().header.get('Authorization')",
         "path": "$context.resourcePath"
       },
-      "motor": "$input.json('$.motor')"
+      "motor": "$input.json('$.motor')",
+      "delay": "$input.json('$.delay')"
     }
   },
     "apiCorsOptionsResponse": {

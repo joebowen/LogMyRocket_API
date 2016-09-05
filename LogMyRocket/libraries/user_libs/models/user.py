@@ -227,13 +227,15 @@ def get_by_username(username, users_table):
     return user['Items'][0]
 
 
-def add_motor_to_user_collection(motor, users_table, payload):
+def add_motor_to_user_collection(motor, delay, users_table, payload):
     """Add a motor to a user's collection.
 
         :param motor: Motor to add to the user's collection
+        :param delay: Motor delay
         :param users_table: The Users DB table.
         :param payload: Payload from JWT containing authenticated user information.
         :type motor: dict
+        :type delay: string
         :type users_table: object
         :type payload: json
 
@@ -247,12 +249,13 @@ def add_motor_to_user_collection(motor, users_table, payload):
 
     motor_list = check['Items'][0]['my_motors']
 
-    if motor['motor-id'] in motor_list:
-        motor_list[motor['motor-id']]['count'] += 1
+    if motor['motor-id'] + '-' + delay in motor_list:
+        motor_list[motor['motor-id'] + '-' + delay]['count'] += 1
     else:
-        motor_list[motor['motor-id']] = {}
-        motor_list[motor['motor-id']]['count'] = 1
-        motor_list[motor['motor-id']]['motor'] = motor
+        motor_list[motor['motor-id'] + '-' + delay] = {}
+        motor_list[motor['motor-id'] + '-' + delay]['count'] = 1
+        motor_list[motor['motor-id'] + '-' + delay]['motor'] = motor
+        motor_list[motor['motor-id'] + '-' + delay]['delay'] = delay
 
     users_table.update_item(
         Key={'user_id': payload['sub']},
