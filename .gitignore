@@ -44,3 +44,4 @@ _meta
 
 #Ignore pytest .cache folder
 **/.cache
+/.project
